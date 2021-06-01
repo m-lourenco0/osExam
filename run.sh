@@ -1,10 +1,13 @@
 #!/bin/bash
+
 NASM=nasm/
 MAIN=mainProgram/
+
 # -- INICIA O PROGRAMA --
 function start(){
     clear
     sleep 0.4
+    # -----------------------
     cd $NASM
     ./intro
     cd ..
@@ -55,16 +58,20 @@ function usage()
   echo "-- Para reiniciar o processo utilize | ./run.sh restart  --"
   echo "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --"
 }
-
-if [ $1 = "start" ]
-then
-  start
-elif [ $1 = "stop" ]
-then
-  stop
-elif [ $1 = "restart" ]
-then
-  restart
-else
+if [ -z "$1" ]
+  then
   usage
+else
+  if [ $1 = "start" ]
+  then
+    start
+  elif [ $1 = "stop" ]
+  then
+    stop
+  elif [ $1 = "restart" ]
+  then
+    restart
+  else
+    usage
+  fi
 fi
